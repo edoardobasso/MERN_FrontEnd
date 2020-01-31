@@ -4,23 +4,34 @@ import { Link } from "react-router-dom";
 import { Accordion, Card, Button, Carousel, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchItineraries } from "../store2/actions/itineraryActions";
-import { fetchActivities } from "../store2/actions/activitiesActions";
+import Activities from "./Activities";
+import Star from "./Star"
 
 class Itineraries extends Component {
+  state = {
+    allIds: [],
+
+  };
+  change = () => {
+
+  }
+
   componentDidMount() {
     this.props.fetchItineraries(this.props.location.state.myCity._id);
 
-    console.log(this.props);
-  }
-
-  click = () => {
-    console.log("is working");
   };
+
+  /* click = () => { 
+  }; */
   render() {
-    console.log(this.props);
     const itns = this.props.itineraries.map((itineraries, index) => {
+
+
+
+      console.log(this.props.location.state.myCity.img)
       return (
         <div
+          key={index}
           style={{
             top: "40px",
             borderStyle: "solid",
@@ -31,6 +42,7 @@ class Itineraries extends Component {
             marginTop: "10px"
           }}
         >
+          <Star onClick={this.change} style={{ position: "relative", right: "-600px" }}></Star>
           <div style={{ display: "flex", justifyContent: "initial" }}>
             <Image
               src="images/AIfaces1.jpg"
@@ -46,9 +58,9 @@ class Itineraries extends Component {
             <p>{itineraries.price}</p>
           </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <p>{itineraries.hashtag}</p>
-            <p>{itineraries.hashtag}</p>
-            <p>{itineraries.hashtag}</p>
+            <p>{itineraries.hashtags}</p>
+            <p>{itineraries.hashtags}</p>
+            <p>{itineraries.hashtags}</p>
           </div>
           <Accordion>
             <Card>
@@ -57,53 +69,16 @@ class Itineraries extends Component {
                   v View All! v
                 </Accordion.Toggle>
               </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <h5 style={{ display: "flex", justifyContent: "flex-start" }}>
-                    Activities:
-                  </h5>
-                  <Carousel>
-                    <Carousel.Item>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around"
-                        }}
-                      >
-                        <h1 className="d-block w-25">casa Bottlo</h1>
-                        <h1 className="d-block w-25">La Pedrera</h1>
-                        <h1 className="d-block w-25 ">Sagrada Familia</h1>
-                        <h1 className="d-block w-25">Market</h1>
-                      </div>
-                    </Carousel.Item>
-                  </Carousel>
-                  <h4 style={{ display: "flex", justifyContent: "flex-start" }}>
-                    Comment:
-                  </h4>
-                  <Form>
-                    <Form.Row>
-                      <Col>
-                        <Form.Control placeholder="Name" />
-                      </Col>
-                    </Form.Row>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control
-                        as="textarea"
-                        rows="3"
-                        placeholder="Comment..."
-                      />
-                    </Form.Group>
-                    <Button onClick={this.click()}>Comment</Button>
-                  </Form>
-                </Card.Body>
-              </Accordion.Collapse>
+              <Activities act1={[itineraries.activities1]} act2={[itineraries.activities2]} act3={[itineraries.activities3]} act4={[itineraries.activities4]} />
             </Card>
           </Accordion>
-        </div>
+        </div >
       );
     });
     return (
       <div>
+
+
         <h1>Itinerary</h1>
         <div
           style={{
@@ -113,17 +88,16 @@ class Itineraries extends Component {
           }}
         >
           <div style={{ width: "98%" }}>
-            <h3>Barcellona</h3>
+            <h3>{this.props.location.state.myCity.name}</h3>
             <Image
               style={{ width: "102%", height: " 200px" }}
-              src="./images/barccelllona.jpeg"
+              src={this.props.location.state.myCity.img}
               alt="Barcellona"
             />
           </div>
           <div style={{ width: "90%", marginTop: "8px" }}>
             <h4>Available MYtineraries:</h4>
           </div>
-          {itns}
           {itns}
 
           <div
@@ -157,7 +131,7 @@ class Itineraries extends Component {
             </Button>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

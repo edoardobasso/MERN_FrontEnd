@@ -1,4 +1,4 @@
-import { FETCH_ACTIVITIES } from "../actions/types";
+import { FETCH_CREATEACCOUNT } from "../actions/types";
 
 const initialState = {
     items: [],
@@ -6,7 +6,7 @@ const initialState = {
 };
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_ACTIVITIES:
+        case FETCH_CREATEACCOUNT:
             return {
                 ...state,
                 items: action.payload

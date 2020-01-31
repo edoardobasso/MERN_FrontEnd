@@ -8,6 +8,7 @@ import CreateAccount from "./components/CreateAccount";
 import Cities from "./components/Cities";
 import Itineraries from "./components/Itineraries";
 import Personal from "./components/Personal";
+import Activities from "./components/Activities";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cities" component={Cities} />
           <Route path="/Itineraries" component={Itineraries} />
           <Route path="/Personal" component={Personal} />
+          <Route path="/Activities" component={Activities} />
         </Switch>
       </BrowserRouter>
     </div>

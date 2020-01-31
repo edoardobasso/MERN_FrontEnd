@@ -12,6 +12,7 @@ class Cities extends Component {
   };
   componentDidMount() {
     this.props.fetchCities();
+    console.log(this.props)
   }
   change = () => {
     this.setState({ searchQuery: this.search.value });
@@ -41,8 +42,8 @@ class Cities extends Component {
                 backgroundSize: "cover"
               }}
             >
-              <h1> {city.name} </h1>
-              <p> {city.country}</p>
+              <h1 style={{ color: "white" }}> {city.name} </h1>
+              <p style={{ color: "white" }}> {city.country}</p>
             </div>
           </Link>
         );
